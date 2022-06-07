@@ -7,7 +7,6 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using FavouriteBoxers.Data;
 using FavouriteBoxers.Models;
-using Microsoft.AspNetCore.Authorization;
 
 namespace FavouriteBoxers.Controllers
 {
@@ -27,6 +26,7 @@ namespace FavouriteBoxers.Controllers
                         View(await _context.Boxer.ToListAsync()) :
                         Problem("Entity set 'ApplicationDbContext.Boxer'  is null.");
         }
+
 
         // GET: Boxer/ShowSearchForm 
         public async Task<IActionResult> ShowSearchForm()
@@ -63,7 +63,6 @@ namespace FavouriteBoxers.Controllers
         }
 
         // GET: Boxer/Create
-        [Authorize]
         public IActionResult Create()
         {
             return View();
@@ -72,10 +71,9 @@ namespace FavouriteBoxers.Controllers
         // POST: Boxer/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Full_Name,Alias,Nationality")] Boxer boxer)
+        public async Task<IActionResult> Create([Bind("Id,Full_Name,Alias,Nationality,Stance,DOB")] Boxer boxer)
         {
             if (ModelState.IsValid)
             {
@@ -86,7 +84,6 @@ namespace FavouriteBoxers.Controllers
             return View(boxer);
         }
 
-        [Authorize]
         // GET: Boxer/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
@@ -106,10 +103,9 @@ namespace FavouriteBoxers.Controllers
         // POST: Boxer/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Full_Name,Alias,Nationality")] Boxer boxer)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Full_Name,Alias,Nationality,Stance,DOB")] Boxer boxer)
         {
             if (id != boxer.Id)
             {
@@ -140,7 +136,6 @@ namespace FavouriteBoxers.Controllers
         }
 
         // GET: Boxer/Delete/5
-        [Authorize]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null || _context.Boxer == null)
@@ -159,7 +154,6 @@ namespace FavouriteBoxers.Controllers
         }
 
         // POST: Boxer/Delete/5
-        [Authorize]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
