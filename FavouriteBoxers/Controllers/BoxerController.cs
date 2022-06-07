@@ -37,7 +37,11 @@ namespace FavouriteBoxers.Controllers
         // POST: Boxer/ShowSearchResults
         public async Task<IActionResult> ShowSearchResults(String SearchPhrase)
         {
-            return View("Index", await _context.Boxer.Where(boxer => boxer.Full_Name.ToLower().Contains(SearchPhrase.ToLower())).ToListAsync());
+            var boxer = await _context.Boxer.Where(boxer => boxer.Full_Name.ToLower().Contains(SearchPhrase.ToLower())).ToListAsync();
+
+            Console.WriteLine("The searched boxer " + SearchPhrase + " " + boxer);
+
+            return View("Index", boxer);
         }
 
         // GET: Boxer/Details/5

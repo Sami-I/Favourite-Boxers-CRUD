@@ -14,7 +14,9 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="Id" />
             <div class="form-group">
-                <label asp-for="Full_Name" class="control-label"></label>
+                <label asp-for="Full_Name" class="control-label">
+                    @Html.DisplayNameFor(model => model.Full_Name).Replace('_', ' ')
+                </label>
                 <input asp-for="Full_Name" class="form-control" />
                 <span asp-validation-for="Full_Name" class="text-danger"></span>
             </div>
@@ -28,13 +30,14 @@
                 <input asp-for="Nationality" class="form-control" />
                 <span asp-validation-for="Nationality" class="text-danger"></span>
             </div>
+            <p></p>
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />
             </div>
         </form>
     </div>
 </div>
-
+<p></p>
 <div>
     <a asp-action="Index">Back to List</a>
 </div>
