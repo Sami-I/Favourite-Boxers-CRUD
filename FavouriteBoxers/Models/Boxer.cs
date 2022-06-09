@@ -20,6 +20,16 @@ namespace FavouriteBoxers.Models
         [Display(Name = "D.O.B")]
         public DateTime DOB { get; set; }
 
+        public int setAge(DateTime dob)
+        {
+            int age = 0;
+            age = DateTime.Now.Year - dob.Year;
+            if (DateTime.Now.DayOfYear < dob.DayOfYear)
+                age = age - 1;
+
+            return age;
+        }
+
         public Boxer()
         {
         }

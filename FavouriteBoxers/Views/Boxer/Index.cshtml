@@ -7,7 +7,8 @@
 <h1>Boxers</h1>
 
 <p>
-    <a asp-action="Create">Add another boxer </a>
+    <a asp-action="Create">Add another boxer</a> <a>&nbsp</a> <a asp-action="ShowSearchForm">Search</a>
+
 </p>
 @{
     if (Model.Count() == 0)
@@ -33,6 +34,9 @@
                         @Html.DisplayNameFor(model => model.Stance)
                     </th>
                     <th>
+                        Age
+                    </th>
+                    <th>
                         @Html.DisplayNameFor(model => model.DOB)
                     </th>
                     <th></th>
@@ -53,6 +57,9 @@
                         </td>
                         <td>
                             @Html.DisplayFor(modelItem => item.Stance)
+                        </td>
+                        <td>
+                            @item.setAge(item.DOB)
                         </td>
                         <td>
                             @Html.DisplayFor(modelItem => item.DOB)
